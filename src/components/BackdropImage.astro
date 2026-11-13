@@ -1,0 +1,18 @@
+---
+// <BackdropImage image={meta} focus="top" sizes="..." /> fills its parent (needs position: relative; isolation: isolate) with a darkened image.
+import "../styles/components/backdropimage.scss";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { ImageFocus } from "../utils/nav";
+
+interface Props {
+    image: ImageMetadata;
+    focus?: ImageFocus;
+    sizes?: string;
+}
+
+const { image, focus = "center", sizes = "100vw" } = Astro.props;
+---
+<div class:list={["backdropimage", `backdropimage-${focus}`]} aria-hidden="true">
+    <Image src={image} alt="" widths={[480, 960, 1600]} sizes={sizes} />
+</div>

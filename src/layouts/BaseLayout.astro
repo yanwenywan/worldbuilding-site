@@ -1,0 +1,35 @@
+---
+import "../styles/global.scss";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const SITE_NAME = "Caeleste Mare";
+const { title, description } = Astro.props;
+const fullTitle = title === SITE_NAME ? title : `${title} · ${SITE_NAME}`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    {description && <meta name="description" content={description} />}
+    <title>{fullTitle}</title>
+</head>
+<body>
+    <NavBar />
+    <main>
+        <slot />
+    </main>
+    <Footer />
+    <script>
+        import "../scripts/callout-decorations.ts";
+    </script>
+</body>
+</html>

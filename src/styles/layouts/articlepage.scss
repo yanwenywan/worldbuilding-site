@@ -1,0 +1,53 @@
+@use "../colours";
+@use "../sizes";
+
+.article-grid {
+    display: grid;
+    grid-template-columns: sizes.$sidebar-width minmax(0, sizes.$content-width) sizes.$toc-width;
+    justify-content: center;
+    column-gap: sizes.$gutter;
+    padding: 2rem sizes.$gutter 4rem;
+}
+
+.article-sidebar,
+.article-toc {
+    position: sticky;
+    top: calc(sizes.$navbar-height + 1.5rem);
+    align-self: start;
+    max-height: calc(100vh - sizes.$navbar-height - 3rem);
+    overflow-y: auto;
+}
+
+.article-body {
+    min-width: 0;
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    :is(h1, h2):not(.colourband *) {
+        padding-bottom: 0.2em;
+        border-bottom: 3px solid colours.$rulegold;
+    }
+}
+
+@media (max-width: sizes.$bp-hide-toc) {
+    .article-grid {
+        grid-template-columns: sizes.$sidebar-width minmax(0, sizes.$content-width);
+    }
+
+    .article-toc {
+        display: none;
+    }
+}
+
+@media (max-width: sizes.$bp-hide-sidebar) {
+    .article-grid {
+        grid-template-columns: minmax(0, sizes.$content-width);
+        padding: 1.5rem sizes.$edge-padding 3rem;
+    }
+
+    .article-sidebar {
+        display: none;
+    }
+}

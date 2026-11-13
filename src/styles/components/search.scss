@@ -1,0 +1,45 @@
+@use "sass:color";
+@use "../colours";
+@use "../fonts";
+
+html:root {
+    --pf-text: #{colours.$txt};
+    --pf-text-secondary: #{colours.$green-dark};
+    --pf-text-muted: #{colours.$green-dark};
+    --pf-background: #{colours.$bg};
+    --pf-border: #{colours.$bgtan};
+    --pf-border-focus: #{colours.$green};
+    --pf-outline-focus: #{colours.$green};
+    --pf-hover: #{colours.$bg-dark};
+    --pf-mark: #{colours.$dndred};
+    --pf-font: #{fonts.$body};
+    --pf-modal-backdrop: #{colours.$overlay};
+    --pf-border-radius: 0;
+}
+
+// Pagefind hard-codes radii and leaves buttons on the system font, behind 3 levels of :is(); a 4th outranks them.
+:is(*, #\#):is(*, #\#):is(*, #\#):is(*, #\#) :is([class^="pf-"], [class*=" pf-"]) {
+    border-radius: 0;
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#):is(*, #\#) button:is([class^="pf-"], [class*=" pf-"]) {
+    font-family: var(--pf-font);
+}
+
+.search pagefind-modal-trigger {
+    --pf-background: #{color.change(colours.$green-dark, $alpha: 0.6)};
+    --pf-border: #{color.change(colours.$band-txt, $alpha: 0.25)};
+    --pf-border-focus: #{colours.$rulegold};
+    --pf-text-muted: #{colours.$band-txt};
+    --pf-text-secondary: #{colours.$band-txt};
+    --pf-hover: transparent;
+    --pf-input-height: 36px;
+    display: block;
+    width: 220px;
+}
+
+@media (max-width: 640px) {
+    .search pagefind-modal-trigger {
+        width: 120px;
+    }
+}

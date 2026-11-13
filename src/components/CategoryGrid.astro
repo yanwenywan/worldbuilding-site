@@ -1,0 +1,47 @@
+---
+// <CategoryGrid /> renders a card per top-level category, using its index.mdx image if set. SubpageLimit caps the list.
+import "../styles/components/categorygrid.scss";
+import type { NavNode } from "../utils/nav";
+import { countPages, getNavTree } from "../utils/nav";
+import { findAsset } from "../utils/images";
+import BackdropImage from "./BackdropImage.astro";
+import NavLink from "./NavLink.astro";
+
+interface Props {
+    subpageLimit?: number;
+}
+
+const { subpageLimit = 4 } = Astro.props;
+const tree = await getNavTree();
+const CARD_IMAGE_SIZES = "(max-width: 640px) 100vw, 360px";
+
+function moreLabel(category: NavNode): string {
+    const pages = countPages(category);
+    if (pages === 0) {
+        return "Read →";
+    }
+    if (pages === 1) {
+        return "1 page →";
+    }
+    return pages + " pages →";
+}
+---
+<div class="categorygrid">
+    {tree.children.map((category) => {
+        const image = findAsset(category.image);
+        return (
+            <section class:list={["categorygrid-card", { "has-image": image }]}>
+                {image && <BackdropImage image={image} focus={category.imageFocus} sizes={CARD_IMAGE_SIZES} />}
+                <h3 class="categorygrid-title"><NavLink node={category} /></h3>
+                {category.children.length > 0 && (
+                    <ul class="categorygrid-pages">
+                        {category.children.slice(0, subpageLimit).map((child) => (
+                            <li><NavLink node={child} /></li>
+                        ))}
+                    </ul>
+                )}
+                {category.href && <a class="categorygrid-more" href={category.href}>{moreLabel(category)}</a>}
+            </section>
+        );
+    })}
+</div>

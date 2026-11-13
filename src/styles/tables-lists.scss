@@ -1,0 +1,51 @@
+@use "colours";
+
+$table-margin: 12px;
+
+table, th, td {
+    border-collapse: collapse;
+    border: none;
+}
+
+th, td {
+    padding: 0 $table-margin;
+}
+
+table {
+    margin: $table-margin auto;
+
+    th {
+        background: colours.$green-light;
+        text-align: left;
+    }
+
+    tr:nth-child(even) td {
+        background: colours.$green-light;
+    }
+
+    &.grey {
+        th, tr:nth-child(even) td {
+            background: colours.$phbmauve;
+        }
+    }
+
+    &.noborder th, &.noborder td {
+        background: none;
+    }
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+:is(ul.not, ol.not) > li {
+    margin-bottom: 0;
+}
+
+ol, ul {
+    &.side {
+        border-left: 1px solid colours.$green;
+        padding-left: 24px;
+        margin-left: -24px;
+    }
+}

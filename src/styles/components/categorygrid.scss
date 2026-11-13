@@ -1,0 +1,78 @@
+@use "sass:color";
+@use "../colours";
+@use "../fonts";
+
+.categorygrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0;
+}
+
+.categorygrid-card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem 1rem;
+    background: colours.$bg-dark;
+    border-top: 3px solid colours.$green;
+    box-shadow: 0 1px 3px colours.$overlay;
+    transition: box-shadow 0.15s ease-out;
+
+    &:hover {
+        box-shadow: 0 3px 8px colours.$overlay;
+    }
+
+    &.has-image {
+        min-height: 220px;
+        color: colours.$band-txt;
+
+        a,
+        .categorygrid-title a {
+            color: colours.$band-txt;
+        }
+
+        .categorygrid-pages li {
+            border-bottom-color: color.change(colours.$band-txt, $alpha: 0.25);
+        }
+
+        .categorygrid-more {
+            color: colours.$rulegold;
+        }
+    }
+}
+
+.categorygrid-title {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+
+    a {
+        color: colours.$green;
+    }
+}
+
+.categorygrid-pages {
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: fonts.$heading;
+    font-size: 0.9rem;
+
+    li {
+        margin: 0;
+        padding: 0.2rem 0;
+        border-bottom: 1px solid colours.$bgtan;
+    }
+}
+
+.categorygrid-more {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    align-self: flex-end;
+    font-family: fonts.$heading;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}

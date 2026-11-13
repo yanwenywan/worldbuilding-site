@@ -1,0 +1,17 @@
+---
+// <SideNav section={node} /> shows a top-level category and its page tree.
+import "../styles/components/sidenav.scss";
+import type { NavNode } from "../utils/nav";
+import NavLink from "./NavLink.astro";
+import NavTree from "./NavTree.astro";
+
+interface Props {
+    section: NavNode;
+}
+
+const { section } = Astro.props;
+---
+<nav class="sidenav" aria-label={section.title} data-pagefind-ignore>
+    <NavLink node={section} class="sidenav-title" />
+    <NavTree nodes={section.children} />
+</nav>

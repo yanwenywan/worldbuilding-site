@@ -1,0 +1,17 @@
+---
+// <Drac>kanaion genthur</Drac> inline, <Drac p> for a paragraph, <Drac block> for a div.
+interface Props {
+    p?: boolean;
+    block?: boolean;
+}
+
+const { p = false, block = false } = Astro.props;
+
+let Tag: "span" | "p" | "div" = "span";
+if (p) {
+    Tag = "p";
+} else if (block) {
+    Tag = "div";
+}
+---
+<Tag class="draconic"><slot /></Tag>

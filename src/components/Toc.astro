@@ -1,0 +1,23 @@
+---
+// <Toc headings={headings} /> lists a page's h2 and h3 headings.
+import "../styles/components/toc.scss";
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+    headings: MarkdownHeading[];
+}
+
+const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+{items.length > 1 && (
+    <nav class="toc" aria-label="On this page" data-pagefind-ignore>
+        <p class="toc-title">On this page</p>
+        <ul>
+            {items.map((h) => (
+                <li class={`toc-depth-${h.depth}`}>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+)}

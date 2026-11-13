@@ -1,0 +1,25 @@
+---
+import "../styles/layouts/landingpage.scss";
+import BaseLayout from "./BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import type { PageFrontmatter } from "../utils/nav";
+import { findAsset } from "../utils/images";
+
+interface Props {
+    frontmatter: PageFrontmatter;
+}
+
+const { frontmatter } = Astro.props;
+---
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+    <Hero
+        title={frontmatter.displaytitle ?? frontmatter.title}
+        subtitle={frontmatter.subtitle}
+        tagline={frontmatter.tagline}
+        image={findAsset(frontmatter.image)}
+        imageFocus={frontmatter.imageFocus}
+    />
+    <div class="landing" data-pagefind-body>
+        <slot />
+    </div>
+</BaseLayout>

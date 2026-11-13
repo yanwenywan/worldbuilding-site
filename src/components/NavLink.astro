@@ -1,0 +1,20 @@
+---
+// <NavLink node={node} class="..." /> renders a link to the node's page, or a plain span
+// when the node is a folder without an index.mdx. Children replace the default label.
+import type { NavNode } from "../utils/nav";
+import { normalisePath } from "../utils/nav";
+
+interface Props {
+    node: NavNode;
+    class?: string;
+}
+
+const { node, class: className } = Astro.props;
+const isCurrent = node.href === normalisePath(Astro.url.pathname);
+---
+{node.href !== undefined && (
+    <a class:list={[className, { current: isCurrent }]} href={node.href} aria-current={isCurrent ? "page" : undefined}><slot>{node.title}</slot></a>
+)}
+{node.href === undefined && (
+    <span class={className}><slot>{node.title}</slot></span>
+)}

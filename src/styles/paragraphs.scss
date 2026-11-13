@@ -1,0 +1,17 @@
+@use "fonts";
+
+p {
+    &.subheading, &.subtitle {
+        font-family: fonts.$heading;
+        letter-spacing: 2px;
+        margin-top: -1em;
+    }
+
+    &.small {
+        font-size: 8pt;
+    }
+
+    &.rightalign {
+        text-align: right;
+    }
+}

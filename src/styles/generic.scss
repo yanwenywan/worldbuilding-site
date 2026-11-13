@@ -1,0 +1,37 @@
+@use "colours";
+@use "fonts";
+
+.centre {
+    text-align: center;
+}
+
+.green {
+    color: colours.$green;
+}
+
+.draconic {
+    font-family: fonts.$draconic;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: fonts.$draconic;
+    }
+}
+
+.twocol, .threecol {
+    display: grid;
+    column-gap: 40px;
+}
+
+.twocol {
+    grid-template-columns: 1fr 1fr;
+}
+
+.threecol {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 800px) {
+    .twocol, .threecol {
+        grid-template-columns: 1fr;
+    }
+}

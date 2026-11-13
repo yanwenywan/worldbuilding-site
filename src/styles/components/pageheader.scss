@@ -1,0 +1,74 @@
+@use "sass:color";
+@use "../colours";
+@use "../fonts";
+@use "../sizes";
+
+.pageheader {
+    position: relative;
+    isolation: isolate;
+    background:
+        linear-gradient(to bottom, transparent, color.change(colours.$green-dark, $alpha: 0.6)),
+        repeating-linear-gradient(45deg, transparent 0 27px, color.change(colours.$green-dark, $alpha: 0.25) 27px 28px),
+        repeating-linear-gradient(-45deg, transparent 0 27px, color.change(colours.$green-dark, $alpha: 0.25) 27px 28px),
+        colours.$green;
+    color: colours.$band-txt;
+    border-bottom: 3px solid colours.$rulegold;
+
+    &.has-image {
+        display: flex;
+        align-items: flex-end;
+        min-height: 300px;
+    }
+
+    h1 {
+        margin: 0.2em 0 0;
+        font-size: 32pt;
+    }
+}
+
+.pageheader-inner {
+    flex: 1;
+    max-width: sizes.$sidebar-width + sizes.$content-width + sizes.$toc-width + 2 * sizes.$gutter;
+    margin: 0 auto;
+    padding: 2rem sizes.$gutter 1.75rem;
+}
+
+.pageheader-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    font-family: fonts.$sansserif;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+
+    a, span {
+        color: color.change(colours.$band-txt, $alpha: 0.8);
+    }
+
+    a:hover {
+        color: colours.$band-txt;
+    }
+
+    > * + *::before {
+        content: "›";
+        margin-right: 0.4em;
+        color: colours.$rulegold;
+    }
+}
+
+.pageheader-subtitle {
+    margin: 0.4em 0 0;
+    font-family: fonts.$heading;
+    letter-spacing: 2px;
+    color: colours.$green-light;
+}
+
+@media (max-width: sizes.$bp-hide-sidebar) {
+    .pageheader-inner {
+        padding: 1.5rem sizes.$edge-padding 1.25rem;
+    }
+
+    .pageheader h1 {
+        font-size: 24pt;
+    }
+}

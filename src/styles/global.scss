@@ -1,0 +1,54 @@
+@use "colours";
+@use "fonts";
+@use "font-faces";
+@use "headings";
+@use "paragraphs";
+@use "anchor";
+@use "tables-lists";
+@use "callouts";
+@use "generic";
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    background: colours.$bg;
+    color: colours.$txt;
+    font-family: fonts.$body;
+    font-size: 13pt;
+    line-height: 150%;
+    font-variant-ligatures: contextual;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    > main {
+        flex: 1;
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid colours.$green;
+    margin: 2em 0;
+}
+
+blockquote {
+    border-left: 2px solid colours.$green;
+    padding-left: 40px;
+    margin-left: 0;
+}
+
+::selection {
+    background: colours.$green-light;
+}

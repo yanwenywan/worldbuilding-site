@@ -1,0 +1,62 @@
+---
+// <NavBar /> is the sticky top bar, used once in BaseLayout. Categories and their dropdowns
+// come from the folders in src/pages (see utils/nav.ts), so new pages appear without edits here.
+import "../styles/components/navbar.scss";
+import { getNavTree, isInBranch } from "../utils/nav";
+import NavLink from "./NavLink.astro";
+import NavTree from "./NavTree.astro";
+import Search from "./Search.astro";
+
+const tree = await getNavTree();
+const path = Astro.url.pathname;
+---
+<header class="navbar" data-pagefind-ignore>
+    <div class="navbar-inner">
+        <a class="navbar-brand" href="/">
+            <span class="navbar-brand-name" aria-label="Caeleste Mare">CM</span>
+            <span class="navbar-brand-cjk" lang="zh">神海</span>
+        </a>
+
+        <span class="navbar-divider" aria-hidden="true"></span>
+
+        <nav class="navbar-links" aria-label="Main">
+            <ul>
+                {tree.children.map((category) => (
+                    <li class:list={["navbar-item", { active: isInBranch(category, path) }]}>
+                        <NavLink node={category} class="navbar-link" />
+                        {category.children.length > 0 && (
+                            <div class="navbar-dropdown">
+                                <ul>
+                                    {category.children.map((child) => (
+                                        <li>
+                                            <NavLink node={child} class="navbar-dropdown-link">
+                                                <span class="navbar-dropdown-title">{child.title}</span>
+                                                {child.description && <span class="navbar-dropdown-desc">{child.description}</span>}
+                                            </NavLink>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </nav>
+
+        <div class="navbar-search">
+            <Search />
+        </div>
+
+        <button class="navbar-menu-button" popovertarget="mobile-nav" aria-label="Open menu">
+            <span class="navbar-menu-icon"></span>
+        </button>
+    </div>
+
+    <nav id="mobile-nav" class="navbar-mobile" popover aria-label="Main">
+        <div class="navbar-mobile-head">
+            <a class="navbar-brand" href="/" aria-label="Caeleste Mare">CM</a>
+            <button class="navbar-mobile-close" popovertarget="mobile-nav" popovertargetaction="hide" aria-label="Close menu">×</button>
+        </div>
+        <NavTree nodes={tree.children} />
+    </nav>
+</header>

@@ -1,0 +1,29 @@
+---
+// <NavTree nodes={nodes} /> renders a nested page tree for the sidebar and mobile menu.
+// Branches containing the current page start open; depth is set by the recursion.
+import "../styles/components/navtree.scss";
+import type { NavNode } from "../utils/nav";
+import { isInBranch } from "../utils/nav";
+import NavLink from "./NavLink.astro";
+
+interface Props {
+    nodes: NavNode[];
+    depth?: number;
+}
+
+const { nodes, depth = 0 } = Astro.props;
+const path = Astro.url.pathname;
+---
+<ul class:list={["navtree", `navtree-depth-${depth}`]}>
+    {nodes.map((node) => (
+        <li class="navtree-item">
+            {node.children.length === 0 && <NavLink node={node} class="navtree-link" />}
+            {node.children.length > 0 && (
+                <details class="navtree-branch" open={isInBranch(node, path)}>
+                    <summary><NavLink node={node} class="navtree-link" /></summary>
+                    <Astro.self nodes={node.children} depth={depth + 1} />
+                </details>
+            )}
+        </li>
+    ))}
+</ul>

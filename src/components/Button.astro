@@ -1,0 +1,11 @@
+---
+// <Button href="greater-pantheon/">The ones who awoke first</Button>
+import "../styles/components/button.scss";
+
+interface Props {
+    href: string;
+}
+
+const { href } = Astro.props;
+---
+<a class="button" href={href}><slot /></a>

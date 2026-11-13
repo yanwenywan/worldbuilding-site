@@ -1,0 +1,78 @@
+@use "../colours";
+@use "../fonts";
+
+.navtree {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: fonts.$sansserif;
+    font-size: 0.9rem;
+    line-height: 1.3;
+
+    .navtree {
+        margin-left: 0.9rem;
+        border-left: 1px solid colours.$green-light;
+    }
+}
+
+.navtree-item {
+    margin: 0;
+}
+
+.navtree-link {
+    display: block;
+    padding: 0.35rem 0.75rem;
+    border-left: 3px solid transparent;
+    color: colours.$txt;
+    transition: background 0.15s, border-color 0.15s;
+
+    &:hover {
+        text-decoration: none;
+        background: colours.$bg-dark;
+        border-left-color: colours.$green-light;
+    }
+
+    &.current {
+        background: colours.$bg-dark;
+        border-left-color: colours.$green;
+        color: colours.$green;
+        font-weight: 600;
+    }
+}
+
+.navtree-branch > summary {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+    .navtree-link {
+        flex: 1;
+    }
+
+    &::after {
+        content: "";
+        width: 6px;
+        height: 6px;
+        margin: 0 0.75rem;
+        border-right: 1.5px solid colours.$green;
+        border-bottom: 1.5px solid colours.$green;
+        transform: rotate(-45deg);
+        transition: transform 0.15s;
+    }
+}
+
+.navtree-branch[open] > summary::after {
+    transform: rotate(45deg);
+}
+
+.navtree-depth-0 > .navtree-item > .navtree-link,
+.navtree-depth-0 > .navtree-item > .navtree-branch > summary .navtree-link {
+    font-family: fonts.$heading;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}

@@ -1,0 +1,19 @@
+---
+// import map from "../assets/map.jpg" then <Figure src={map} alt="..." caption="..." float="right" />
+import "../styles/components/figure.scss";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    src: ImageMetadata;
+    alt: string;
+    caption?: string;
+    float?: "left" | "right";
+}
+
+const { src, alt, caption, float } = Astro.props;
+---
+<figure class:list={["figure", float && `figure-${float}`]}>
+    <Image src={src} alt={alt} />
+    {caption && <figcaption>{caption}</figcaption>}
+</figure>

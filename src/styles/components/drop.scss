@@ -1,0 +1,11 @@
+@use "../colours";
+@use "../fonts";
+
+.dropcap {
+    float: left;
+    font-family: fonts.$dropcap;
+    font-size: 6em;
+    line-height: 1;
+    margin-right: 6px;
+    color: colours.$txt;
+}

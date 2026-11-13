@@ -1,0 +1,40 @@
+@use "colours";
+@use "fonts";
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: fonts.$heading;
+    line-height: 130%;
+    scroll-margin-top: 80px;
+}
+
+h1 {
+    font-size: 36pt;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 24pt;
+    letter-spacing: 2px;
+    margin: 1.2em 0 0.45em;
+}
+
+h3 {
+    font-size: 20pt;
+    letter-spacing: 2px;
+    margin: 1.3em 0 0.5em;
+
+    &.compress {
+        margin-bottom: -4pt;
+    }
+}
+
+h4 {
+    font-size: 16pt;
+    letter-spacing: 1px;
+    margin: 1.45em 0 0.3em;
+}
+
+// The heading's bottom margin sets the gap; otherwise the next element's top margin would win.
+:is(h2, h3, h4) + * {
+    margin-top: 0;
+}

@@ -1,0 +1,30 @@
+---
+// <PageHeader title subtitle draconic trail image imageFocus /> is the title band with breadcrumbs; image replaces the pattern.
+import "../styles/components/pageheader.scss";
+import type { ImageMetadata } from "astro";
+import type { ImageFocus, NavNode } from "../utils/nav";
+import BackdropImage from "./BackdropImage.astro";
+import NavLink from "./NavLink.astro";
+
+interface Props {
+    title: string;
+    subtitle?: string;
+    draconic?: boolean;
+    trail?: NavNode[];
+    image?: ImageMetadata;
+    imageFocus?: ImageFocus;
+}
+
+const { title, subtitle, draconic = false, trail = [], image, imageFocus } = Astro.props;
+---
+<header class:list={["pageheader", { "has-image": image }]}>
+    {image && <BackdropImage image={image} focus={imageFocus} />}
+    <div class="pageheader-inner">
+        <nav class="pageheader-crumbs" aria-label="Breadcrumbs" data-pagefind-ignore>
+            <a href="/">Home</a>
+            {trail.map((node) => <NavLink node={node} />)}
+        </nav>
+        <h1 class:list={{ draconic }} data-pagefind-meta="title">{title}</h1>
+        {subtitle && <p class="pageheader-subtitle">{subtitle}</p>}
+    </div>
+</header>

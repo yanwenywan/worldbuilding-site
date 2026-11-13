@@ -1,0 +1,32 @@
+@use "../colours";
+@use "../fonts";
+@use "../sizes";
+
+.footer {
+    background: colours.$green;
+    color: colours.$band-txt;
+    border-top: 3px solid colours.$rulegold;
+    margin-bottom: -10em;
+    font-family: fonts.$body;
+    font-size: 0.8rem;
+}
+
+.footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.75rem sizes.$gutter;
+
+    p {
+        margin: 0.25rem 0;
+    }
+}
+
+@media (max-width: sizes.$bp-hide-sidebar) {
+    .footer-inner {
+        padding: 0.75rem sizes.$edge-padding;
+    }
+}

@@ -1,0 +1,18 @@
+@use "../colours";
+@use "../sizes";
+
+.colourband {
+    background: colours.$green;
+    color: colours.$band-txt;
+    text-align: center;
+    padding: 0.25rem sizes.$edge-padding;
+    margin: 2.5rem 0 1.5rem;
+
+    :is(h1, h2, h3) {
+        margin: 0.4em 0;
+    }
+
+    p {
+        margin-top: -0.5em;
+    }
+}

@@ -1,0 +1,44 @@
+---
+import "../styles/layouts/articlepage.scss";
+import type { MarkdownHeading } from "astro";
+import BaseLayout from "./BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SideNav from "../components/SideNav.astro";
+import Toc from "../components/Toc.astro";
+import type { PageFrontmatter } from "../utils/nav";
+import { getNavTree, getTrail } from "../utils/nav";
+import { findAsset } from "../utils/images";
+
+interface Props {
+    frontmatter: PageFrontmatter;
+    headings?: MarkdownHeading[];
+}
+
+const { frontmatter, headings = [] } = Astro.props;
+
+const tree = await getNavTree();
+const trail = getTrail(tree, Astro.url.pathname);
+const section = trail[0];
+const ancestors = trail.slice(0, -1);
+---
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+    <PageHeader
+        title={frontmatter.displaytitle ?? frontmatter.title}
+        subtitle={frontmatter.subtitle}
+        draconic={frontmatter.draconic}
+        image={findAsset(frontmatter.image)}
+        imageFocus={frontmatter.imageFocus}
+        trail={ancestors}
+    />
+    <div class="article-grid">
+        <aside class="article-sidebar">
+            {section && <SideNav section={section} />}
+        </aside>
+        <article class="article-body" data-pagefind-body>
+            <slot />
+        </article>
+        <aside class="article-toc">
+            <Toc headings={headings} />
+        </aside>
+    </div>
+</BaseLayout>

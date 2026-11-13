@@ -1,0 +1,10 @@
+---
+// <Search /> renders the Pagefind trigger and modal (Ctrl+K, or Cmd+K on Mac, opens it). The index only exists after a build.
+import "../styles/components/search.scss";
+import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
+---
+<div class="search">
+    <PagefindConfig />
+    <pagefind-modal-trigger placeholder="Search" hide-shortcut></pagefind-modal-trigger>
+    <pagefind-modal></pagefind-modal>
+</div>
