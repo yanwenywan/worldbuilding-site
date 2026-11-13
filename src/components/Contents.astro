@@ -1,0 +1,25 @@
+---
+// <Contents /> lists every page below the current one as a nested list under "## Contents"; title="..." changes the heading.
+import type { NavNode } from "../utils/nav";
+import { findNode, getNavTree } from "../utils/nav";
+import ContentsList from "./ContentsList.astro";
+
+interface Props {
+    title?: string;
+}
+
+const { title = "Contents" } = Astro.props;
+const tree = await getNavTree();
+const page = findNode(tree, Astro.url.pathname);
+
+let children: NavNode[] = [];
+if (page !== undefined) {
+    children = page.children;
+}
+---
+{children.length > 0 && (
+    <nav class="contents" aria-label={title} data-pagefind-ignore>
+        <h2 id="contents">{title}</h2>
+        <ContentsList nodes={children} />
+    </nav>
+)}

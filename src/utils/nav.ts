@@ -143,6 +143,19 @@ export function getTrail(root: NavNode, pathname: string): NavNode[] {
     return trail;
 }
 
+export function findNode(root: NavNode, pathname: string): NavNode | undefined {
+    const path = normalisePath(pathname);
+    if (root.href === path) {
+        return root;
+    }
+    const trail = getTrail(root, path);
+    const last = trail[trail.length - 1];
+    if (last !== undefined && last.href === path) {
+        return last;
+    }
+    return undefined;
+}
+
 export function countPages(node: NavNode): number {
     let count = 0;
     for (const child of node.children) {

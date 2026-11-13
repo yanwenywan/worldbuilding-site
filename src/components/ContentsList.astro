@@ -1,0 +1,19 @@
+---
+// <ContentsList nodes={nodes} /> renders nodes as a nested list of links; used by Contents.
+import type { NavNode } from "../utils/nav";
+import NavLink from "./NavLink.astro";
+
+interface Props {
+    nodes: NavNode[];
+}
+
+const { nodes } = Astro.props;
+---
+<ul>
+    {nodes.map((node) => (
+        <li>
+            <NavLink node={node} />
+            {node.children.length > 0 && <Astro.self nodes={node.children} />}
+        </li>
+    ))}
+</ul>
