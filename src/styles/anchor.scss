@@ -7,4 +7,10 @@ a {
     &:hover {
         text-decoration: underline;
     }
+
+    &.internal.new {
+        color: colours.$dndred;
+        text-decoration: underline dashed;
+        cursor: help;
+    }
 }

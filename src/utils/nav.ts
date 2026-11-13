@@ -12,6 +12,7 @@ export interface PageFrontmatter {
     draconic?: boolean;
     order?: number;
     hidden?: boolean;
+    links?: string[];
 }
 
 export interface NavNode {
@@ -21,6 +22,7 @@ export interface NavNode {
     image?: string;
     imageFocus?: ImageFocus;
     order: number;
+    links: string[];
     children: NavNode[];
 }
 
@@ -71,12 +73,16 @@ async function loadPages(): Promise<PageEntry[]> {
 }
 
 async function buildTree(): Promise<NavNode> {
-    const root: NavNode = { title: 'Home', href: '/', order: 0, children: [] };
+    const root: NavNode = { title: 'Home', href: '/', order: 0, links: [], children: [] };
     const nodesByRoute = new Map<string, NavNode>();
     nodesByRoute.set('/', root);
 
     for (const page of await loadPages()) {
-        if (page.href === '/' || page.frontmatter.hidden) {
+        if (page.href === '/') {
+            root.links = page.frontmatter.links ?? [];
+            continue;
+        }
+        if (page.frontmatter.hidden) {
             continue;
         }
 
@@ -86,7 +92,7 @@ async function buildTree(): Promise<NavNode> {
             route = route + segment + '/';
             let node = nodesByRoute.get(route);
             if (node === undefined) {
-                node = { title: titleFromSlug(segment), order: DEFAULT_ORDER, children: [] };
+                node = { title: titleFromSlug(segment), order: DEFAULT_ORDER, links: [], children: [] };
                 nodesByRoute.set(route, node);
                 parent.children.push(node);
             }
@@ -99,6 +105,7 @@ async function buildTree(): Promise<NavNode> {
         parent.image = page.frontmatter.image;
         parent.imageFocus = page.frontmatter.imageFocus;
         parent.order = page.frontmatter.order ?? DEFAULT_ORDER;
+        parent.links = page.frontmatter.links ?? [];
     }
 
     sortTree(root);
@@ -154,6 +161,21 @@ export function findNode(root: NavNode, pathname: string): NavNode | undefined {
         return last;
     }
     return undefined;
+}
+
+function collectBacklinks(node: NavNode, path: string, backlinks: NavNode[]): void {
+    if (node.href !== undefined && node.href !== path && node.links.includes(path)) {
+        backlinks.push(node);
+    }
+    for (const child of node.children) {
+        collectBacklinks(child, path, backlinks);
+    }
+}
+
+export function getBacklinks(root: NavNode, pathname: string): NavNode[] {
+    const backlinks: NavNode[] = [];
+    collectBacklinks(root, normalisePath(pathname), backlinks);
+    return backlinks;
 }
 
 export function countPages(node: NavNode): number {

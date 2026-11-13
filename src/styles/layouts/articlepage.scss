@@ -18,8 +18,11 @@
     overflow-y: auto;
 }
 
-.article-body {
+.article-main {
     min-width: 0;
+}
+
+.article-body {
 
     > :first-child {
         margin-top: 0;

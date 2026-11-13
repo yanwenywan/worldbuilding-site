@@ -2,6 +2,7 @@
 import "../styles/layouts/articlepage.scss";
 import type { MarkdownHeading } from "astro";
 import BaseLayout from "./BaseLayout.astro";
+import Backlinks from "../components/Backlinks.astro";
 import PageHeader from "../components/PageHeader.astro";
 import SideNav from "../components/SideNav.astro";
 import Toc from "../components/Toc.astro";
@@ -34,9 +35,12 @@ const ancestors = trail.slice(0, -1);
         <aside class="article-sidebar">
             {section && <SideNav section={section} />}
         </aside>
-        <article class="article-body" data-pagefind-body>
-            <slot />
-        </article>
+        <div class="article-main">
+            <article class="article-body" data-pagefind-body>
+                <slot />
+            </article>
+            <Backlinks />
+        </div>
         <aside class="article-toc">
             <Toc headings={headings} />
         </aside>

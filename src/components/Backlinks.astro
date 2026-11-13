@@ -1,0 +1,17 @@
+---
+// <Backlinks /> lists the pages that wikilink to the current page; used once in ArticlePage.
+import "../styles/components/backlinks.scss";
+import { getBacklinks, getNavTree } from "../utils/nav";
+import NavLink from "./NavLink.astro";
+
+const tree = await getNavTree();
+const backlinks = getBacklinks(tree, Astro.url.pathname);
+---
+{backlinks.length > 0 && (
+    <aside class="backlinks" aria-label="Referenced in" data-pagefind-ignore>
+        <p class="backlinks-title">Referenced in</p>
+        <ul>
+            {backlinks.map((node) => <li><NavLink node={node} /></li>)}
+        </ul>
+    </aside>
+)}
