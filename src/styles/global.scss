@@ -52,3 +52,8 @@ blockquote {
 ::selection {
     background: colours.$green-light;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}

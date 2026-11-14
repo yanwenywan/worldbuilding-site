@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+    echo "usage: newpage <path> <page>" >&2
+    echo "e.g.   newpage src/pages/stories/records zhengyinjia.mdx" >&2
+    exit 1
+fi
+
+dir="${1%/}"
+page="$2"
+target="$dir/$page"
+layout="src/layouts/ArticlePage.astro"
+
+if [[ ! -d "$dir" ]]; then
+    echo "newpage: directory '$dir' does not exist" >&2
+    exit 1
+fi
+
+if [[ -e "$target" ]]; then
+    echo "newpage: '$target' already exists" >&2
+    exit 1
+fi
+
+if [[ ! -f "$layout" ]]; then
+    echo "newpage: '$layout' not found; run from the project root" >&2
+    exit 1
+fi
+
+# Build a relative path from $dir to $layout, e.g. src/pages/stories/records -> ../../../layouts/ArticlePage.astro
+common="$dir"
+up=""
+while [[ "${layout#"$common"/}" == "$layout" ]]; do
+    if [[ "$common" == */* ]]; then
+        common="${common%/*}"
+    else
+        common="."
+    fi
+    up="../$up"
+    [[ "$common" == "." ]] && break
+done
+
+if [[ "$common" == "." ]]; then
+    rel="${up}${layout}"
+else
+    rel="${up}${layout#"$common"/}"
+fi
+
+cat > "$target" <<EOF
+---
+layout: $rel
+title: Title
+subtitle: Subtitle
+navTitle: Title
+---
+EOF
+
+echo "created $target"
