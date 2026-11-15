@@ -24,15 +24,13 @@
     padding: 4px;
     background: colours.$bg-dark;
     border: 2px solid colours.$rulegold;
-    outline: 1px solid colours.$rulegold;
-    outline-offset: 3px;
-    box-shadow: 0 2px 8px colours.$overlay;
     cursor: zoom-in;
 
     img {
         display: block;
         width: 100%;
         height: auto;
+        box-shadow: 0 2px 8px colours.$overlay;
     }
 
     &:hover .zoom-figure-hint,
@@ -42,6 +40,7 @@
 
     &:focus-visible {
         outline: 2px solid colours.$stronggold;
+        outline-offset: 2px;
     }
 }
 
@@ -58,8 +57,12 @@
     color: colours.$band-txt;
     background: colours.$green;
     box-shadow: 0 1px 4px color.change(colours.$txt, $alpha: 0.5);
-    opacity: 0.75;
+    opacity: 0;
     transition: opacity 0.2s ease-in-out;
+
+    @media (hover: none) {
+        opacity: 0.75;
+    }
 }
 
 html:has(.zoom-dialog[open]) {
