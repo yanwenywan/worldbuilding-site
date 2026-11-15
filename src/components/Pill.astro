@@ -4,23 +4,23 @@
 import "../styles/components/pill.scss";
 
 interface Props {
-	zhong?: boolean  // chinese tag, red with 中 
-	rekh?: boolean  // draconic tag, gold with REKH
-	red?: boolean  // generic red tag
-	gold?: boolean  // generic gold tag
+    zhong?: boolean  // chinese tag, red with 中 
+    rekh?: boolean  // draconic tag, gold with REKH
+    red?: boolean  // generic red tag
+    gold?: boolean  // generic gold tag
 }
 
 const {
-  zhong = false,
-  rekh = false,
-  red = false,
-  gold = false
+    zhong = false,
+    rekh = false,
+    red = false,
+    gold = false
 } = Astro.props
 ---
 <span class={"pill" + (zhong || red ? " pillred" : "") + (rekh || gold ? " pillgold" : "")}>
     {
-      zhong ? (<span>中</span>) 
-      : rekh ? (<span class="draconic">REKH</span>)
-      : (<slot/>)
+        zhong ? (<span>中</span>) 
+        : rekh ? (<span class="draconic">REKH</span>)
+        : (<slot/>)
     }
 </span>
