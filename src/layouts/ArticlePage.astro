@@ -31,7 +31,7 @@ const ancestors = trail.slice(0, -1);
         imageFocus={frontmatter.imageFocus}
         trail={ancestors}
     />
-    <div class="article-grid">
+    <div class:list={["article-grid", { wide: frontmatter.wide }]}>
         <aside class="article-sidebar">
             {section && <SideNav section={section} />}
         </aside>
@@ -41,8 +41,10 @@ const ancestors = trail.slice(0, -1);
             </article>
             <Backlinks />
         </div>
-        <aside class="article-toc">
-            <Toc headings={headings} />
-        </aside>
+        {!frontmatter.wide && (
+            <aside class="article-toc">
+                <Toc headings={headings} />
+            </aside>
+        )}
     </div>
 </BaseLayout>

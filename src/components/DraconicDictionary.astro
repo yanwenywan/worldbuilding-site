@@ -1,0 +1,32 @@
+---
+// <DraconicDictionary /> loads the dictionary from the published Google Sheet and filters it in the browser.
+import "../styles/components/draconicdictionary.scss";
+
+const COLUMN_LABELS = ["English", "Rekharhakr", "Rkaarik", "Ancient", "Class", "Notes"];
+---
+<div class="dictionary" data-pagefind-ignore>
+    <div class="dictionary-controls">
+        <input
+            type="search"
+            class="dictionary-search"
+            placeholder="Search"
+            aria-label="Search the dictionary"
+            autocomplete="off"
+            spellcheck="false"
+        />
+        <div class="dictionary-columns" role="group" aria-label="Search in">
+            <button type="button" class="dictionary-column active" data-column="all">All</button>
+            {COLUMN_LABELS.map((label, index) => (
+                <button type="button" class="dictionary-column" data-column={index}>{label}</button>
+            ))}
+        </div>
+    </div>
+    <div class="dictionary-scroll">
+        <table class="dictionary-table grey"></table>
+    </div>
+    <p class="dictionary-status">Loading dictionary…</p>
+</div>
+
+<script>
+    import "../scripts/draconic-dictionary.ts";
+</script>

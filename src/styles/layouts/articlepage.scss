@@ -1,12 +1,27 @@
 @use "../colours";
 @use "../sizes";
 
+$wide-body-max: 1600px;
+$two-column-width: sizes.$sidebar-width + sizes.$gutter + sizes.$content-width;
+$three-column-width: $two-column-width + sizes.$gutter + sizes.$toc-width;
+
 .article-grid {
     display: grid;
     grid-template-columns: sizes.$sidebar-width minmax(0, sizes.$content-width) sizes.$toc-width;
     justify-content: center;
     column-gap: sizes.$gutter;
     padding: 2rem sizes.$gutter 4rem;
+
+    // Wide pages hide the outline and extend the main body rightwards
+    &.wide {
+        grid-template-columns: sizes.$sidebar-width minmax(0, $wide-body-max);
+        justify-content: start;
+        padding-left: max(sizes.$gutter, calc((100% - $three-column-width) / 2));
+
+        .article-body > :is(p, ul, ol, blockquote) {
+            max-width: sizes.$content-width;
+        }
+    }
 }
 
 .article-sidebar,
@@ -37,6 +52,10 @@
 @media (max-width: sizes.$bp-hide-toc) {
     .article-grid {
         grid-template-columns: sizes.$sidebar-width minmax(0, sizes.$content-width);
+
+        &.wide {
+            padding-left: max(sizes.$gutter, calc((100% - $two-column-width) / 2));
+        }
     }
 
     .article-toc {
@@ -48,6 +67,11 @@
     .article-grid {
         grid-template-columns: minmax(0, sizes.$content-width);
         padding: 1.5rem sizes.$edge-padding 3rem;
+
+        &.wide {
+            grid-template-columns: minmax(0, 1fr);
+            padding-left: sizes.$edge-padding;
+        }
     }
 
     .article-sidebar {

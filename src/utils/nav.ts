@@ -12,6 +12,7 @@ export interface PageFrontmatter {
     draconic?: boolean;
     order?: number;
     hidden?: boolean;
+    wide?: boolean;
     links?: string[];
 }
 

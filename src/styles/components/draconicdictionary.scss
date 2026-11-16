@@ -1,0 +1,139 @@
+@use "sass:color";
+@use "sass:list";
+@use "../colours";
+@use "../fonts";
+@use "../sizes";
+
+$column-colours: colours.$dict-english, colours.$dict-rekharhakr, colours.$dict-rkaarik, colours.$dict-ancient, colours.$dict-class;
+
+.dictionary {
+    margin: 2rem 0;
+}
+
+.dictionary-controls {
+    position: sticky;
+    top: sizes.$navbar-height;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    padding: 0.75rem 0;
+    background: colours.$bg;
+    border-bottom: 3px solid colours.$rulegold;
+}
+
+.dictionary-search {
+    flex: 1 1 240px;
+    padding: 6px 10px;
+    border: 1px solid colours.$bgtan;
+    border-radius: 0;
+    background: colours.$bg-dark;
+    color: colours.$txt;
+    font-family: fonts.$body;
+    font-size: 1rem;
+
+    &:focus {
+        outline: none;
+        border-color: colours.$green;
+    }
+
+    // Chrome's own clear button is a shaded grey icon; draw a flat cross in our green instead.
+    &::-webkit-search-cancel-button {
+        appearance: none;
+        width: 0.8em;
+        height: 0.8em;
+        background: colours.$green-dark;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1 1l8 8M9 1l-8 8' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center / contain no-repeat;
+        cursor: pointer;
+    }
+}
+
+.dictionary-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.dictionary-column {
+    padding: 4px 12px;
+    border: 1px solid colours.$green;
+    border-radius: 0;
+    background: transparent;
+    color: colours.$green;
+    font-family: fonts.$sansserif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+        background: colours.$green-light;
+    }
+
+    &.active {
+        background: colours.$green;
+        color: colours.$band-txt;
+    }
+}
+
+.dictionary-status {
+    font-style: italic;
+    color: colours.$txt-grey;
+    text-align: center;
+}
+
+.dictionary-scroll {
+    overflow-x: auto;
+}
+
+table.dictionary-table {
+    width: 100%;
+    min-width: 640px;
+    margin: 0;
+
+    th {
+        font-family: fonts.$heading;
+        font-size: 1.1rem;
+        padding-top: 0.5em;
+        padding-bottom: 0.3em;
+    }
+
+    td {
+        vertical-align: top;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+    }
+
+    @for $i from 1 through list.length($column-colours) {
+        :is(th, td):nth-child(#{$i}) {
+            color: list.nth($column-colours, $i);
+        }
+    }
+
+    td:nth-child(n + 2):nth-child(-n + 4) {
+        font-style: italic;
+    }
+}
+
+.dictionary-irregular {
+    min-width: 1.5em;
+    margin: 0 0 2px;
+    padding: 0 4px;
+    border: 1px solid color.change(colours.$txt, $alpha: 0.25);
+    border-radius: 0;
+    background: color.change(colours.$txt, $alpha: 0.06);
+    color: inherit;
+    font-family: fonts.$body;
+    font-size: 0.85em;
+    font-style: normal;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+        background: color.change(colours.$txt, $alpha: 0.15);
+    }
+}
+
+.dictionary-irregular-forms {
+    margin-left: 0.4em;
+}
