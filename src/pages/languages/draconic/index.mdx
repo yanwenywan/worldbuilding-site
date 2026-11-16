@@ -7,6 +7,7 @@ navTitle: Draconic
 import Drop from "../../../components/Drop.astro"
 import Drac from "../../../components/Drac.astro"
 import Button from "../../../components/Button.astro"
+import Pill from "../../../components/Pill.astro"
 
 <Drop>D</Drop>raconic is the language of the dragons in the Material Plane, originating around the Spring of the Earth. It comes in two main dialects: eastern and western, *rékharhákr* and *rkaarik*, with limited intelligibility between them. There is also the ancient literary form of the language “*hakr*”, which is only preserved for highly formal and religious occasions, and is generally not known by outsiders.
 
@@ -26,7 +27,9 @@ This language is explained using the eastern version of Draconic, which is spoke
 
 *rekharhakr*, or eastern draconic, is the variant of draconic spoken around and east of the Spring of the Earth, in East Aseron and the Sea of Shattered Stars. 
 
-It is the native language of dragonkind, though often learned as a second language by merchants and scholars, and used as somewhat of a lingua-franca across the east. _rekharhakr_ is considered "colloquial", used for casual literature or messages, but not in governance or religious ceremony. The *khankain* ("civilised" dragonkind) of the central plains prefer to use the central plains Yan language [read: Classical Chinese] for state affairs, or Ancient Draconic for solemn and religious matters.
+It is the native language of dragonkind, though often learned as a second language by merchants and scholars, and used as somewhat of a lingua-franca across the east. _rekharhakr_ is considered "colloquial", used for casual literature or messages, but not in governance or religious ceremony. 
+
+The ***khankain*** (royal-born "civilised" dragonkind) of the central plains prefer to use the central plains Yan language [read: Classical Chinese] for state affairs, or Ancient Draconic for solemn and religious matters. The ***arakain*** (wild-born "uncivilised" dragonkind) rarely write, but use draconic as a primary language.
 
 ### 1. Phonology
 
@@ -48,11 +51,11 @@ It is the native language of dragonkind, though often learned as a second langua
 | d             | /d/                    | **d**ream                | y              | /j/             | **y**oung             |
 | h<sup>1</sup> | /χ<sup>h</sup>/        | *a growl*                | ‘ <sup>4</sup> | / /             | null                  |
 
-Footnotes: 
-- 【1】*h* and *kh* are pronounced the same, but the former is high pitch, and the latter is low pitch.
-- 【2】In eastern draconic, this is only pronounced /f/ in *final* place, and /v/ everywhere else. Some accents do not separate the sounds. In western draconic, /f/ and /v/ are distinct but written the same.
-- 【3】Usually /s/ with a low pitch, very rarely /θ/ and only then generally western dialects. Contrasts with *s* which is high pitch.
-- 【4】Apostrophes are used to denote syllable splits, or represent missing letters.
+Notes: 
+- <Pill>1</Pill> *h* and *kh* are pronounced the same, but the former is high pitch, and the latter is low pitch.
+- <Pill>2</Pill> In eastern draconic, this is only pronounced /f/ in *final* place, and /v/ everywhere else. Some accents do not separate the sounds. In western draconic, /f/ and /v/ are distinct but written the same.
+- <Pill>3</Pill> Usually /s/ with a low pitch, very rarely /θ/ and only then generally western dialects. Contrasts with *s* which is high pitch.
+- <Pill>4</Pill> Apostrophes are used to denote syllable splits, or represent missing letters.
 
 ***Long vowels*** are written using reduplicated vowel letters *aa, ee, ii, oo, uu*, however of these only *aa, ii* are common. This elongates the vowel sound but does not change its quality significantly. Vowel diphthongs include *ai* /aɪ/ and *ie* /ie/,
 
@@ -65,6 +68,8 @@ Pitch accent occurs from sound mergers in the language, and are applied per syll
 *th* and *kh* are low-tones, syllables with these should be pronounced at the low end of the vocal range.
 
 *s* and *h* are high-tones, syllables with these should be pronounced at normal, or slightly higher than normal vocal range.
+
+Every other syllable is free pitch, pronounced at preference.
 
 ***Exception.*** A word-final *s* does not affect the tone of that syllable, as it is usually silent.
 
@@ -152,11 +157,7 @@ Articles do not exist, and number / count is indicated simply by putting the num
 > _yir rekhar, zor rekhar_ / one dragon, five dragons.     
 > `ONE DRAGON, FIVE DRAGON`
 
-Definite emphasis is done with _hir_ "this" or _tai_ "that".
-
-
-
-
+Definite emphasis is done with _hir_ "this" or _tak_ "that".
 
 #### 4.2. Pronouns
 
@@ -181,6 +182,8 @@ Person | Pronoun type | Word(s)
 ·   | lower plural "they" | _thiaa_
 
 _-ad_ is the standard suffix for pronoun plurality and is exclusive by default. _ánad_ is used for the inclusive we. This becomes _-kad_ when the pronoun ends with _a_ (e.g. _khaakad_). Third person ungendered pronouns have a different word.
+
+Ordinary nouns may take _-ad_ only in the subject form as emphasis of the grouped nature.
 
 "lower" usually refers to non-dragons, and can apply to both non-sapient things and sapient creatures (e.g. humans, elves, dwarves, etc.). Anything that is of higher "standing" than a dragon (or viewed with sufficient respect) is referred to by standard third person pronouns. 
 
@@ -212,11 +215,25 @@ For the first person singular _zar_, the possessive is informally shortened from
 > _ron ixiir_ / My love.     
 > `I-poss BELOVED`
 
+The second person possessive _zii'on_ is often shortened to _zin_.
+
 Plural endings on pronouns always come before possession.
+
+Possessive suffixes can often shift the stressed syllable back by one, e.g. _xíron_ -> _xirónon_.
 
 #### 4.6. Determiners
 
 _rekharhakr_ has a two level determinative system like English, _hir_ "this" vs _tak_ "that"; _tan_ "here" vs _tak_ "there".
+
+#### 4.7 Attributives
+
+The _-is_ suffix can be added onto nouns to signify that the next noun or phrase belongs to it in context. It is a broad particle that can be thought of as describing location in an abstract way.
+
+For concrete terms, prepositions like _ith_ and _zon_ are preferred. 
+
+> [!comment]
+> _xarái'is karínak._ The dancer in the night    
+> `NIGHT-attr DANCE-actor`
 
 ### 5. Verb Morphology
 
@@ -234,7 +251,7 @@ Tense | Suffix | Example/notes
 -|-|-
 Infinitive/present | _-in_ | _aak paziin_ / he plays<br/>Present continuous is conjugated separately
 Past perfect/imperfect | _ins_ | _aak paziins_ / he played<br/>Add _s_
-Past pluperfect | _inir_ | _aak paziinir / he had played<br/>Add _ir_
+Past pluperfect | _inir_ | _aak paziinir_ / he had played<br/>Add _ir_
 Future | _ix_ | _aak paziix_ / he will play<br/>Replace _-n_ with _-x_
 Conditional | _ixa_ | _aak paziixa_ / he would play<br/>Replace _-n_ with _-xa_; also used for talking about the future in past tense
 Imperative | _ii_ / - | _pazii nal za_ or _paz nal za_ (informal) / play with me<br/>Replace _in_ or _iin_ with _ii_; informally remove _in_ or replace _iin_ with _ii_
@@ -273,7 +290,7 @@ Modal particles, such as _kat_ (can), _iir_ (may), _os_ (must), _has_ (shall), _
 
 Negation is expressed by the modal particle _da_. This goes before the verb or modal aspect. 
 
-_da_ in isolation is only used for emphasis. Normally, the **prefix** _d-_ is used instead. This is appended directly onto the verb or modal particle, and changes form based on the continent afterwards:
+_da_ in isolation is only used for emphasis. Normally, the **prefix** _d-_ is used instead. This is appended directly onto the verb or modal particle, and changes form based on the consonant afterwards:
 
 | original         | transformed | original | transformed |
 | ---------------- | ----------- | -------- | ----------- |
@@ -315,14 +332,260 @@ Passive voice is constructed using topic-comment structure with copula.
 
 ### 6. Other Word Classes
 
+#### 6.1 Adjectives and Adverbs
+
+_rekharhakr_ makes no difference between adjectives and adverbs. Hence, adverbs are referred to as adjectives exclusively.
+
+_rekharhakr_ is generally _head-initial_, so adjectives are placed after nouns/verbs.
+
+> [!comment]
+> _rékhar khrae._ Red dragon    
+> `DRAGON RED`
+
+> [!comment]
+> _asrai xyae._ Quickly flying    
+> `FLY-present FAST`
+
+There is also no significant difference between nouns and adjectives; nouns can be used as adjectival desecriptions. In fact, infinitive form verbs can also be used as adjectival descriptions, if contextually appropriate.
+
+> [!comment]
+> _xarai da i'ai._ Starless night    
+> `NIGHT NO STAR`
+
+> [!comment]
+> _asái yirín._ Burning dawn
+
+Adjectives are formally ordered: qualifier, proper adjective, colour, shape, age, size, quality. 
+
+#### 6.2 Numerals
+
+_rekharhakr_ uses a base-20 counting system, with base 10 used past 100. There _is_ the concept of zero, but it is imported.
+
+Number | _rekharhakr_ | Number | _rekharhakr_ | Number | _rekharhakr_
+-|-|-|-|-|-
+0 | _rin_ | 11 | _aelá_ | 30 | _nak'he_
+1 | _yir_ | 12 | _ahaa_ | 31 | _nak aelá_
+2 | _ahr_ | 13 | _asaa_ | 40 | _anák_
+3 | _sen_ | 14 | _áexa_ | 50 | _anák'he_
+4 | _xirn_ | 15 | _áevas_ | 60 | _senák_
+5 | _zor_ | 16 | _áerus_ | 70 | _senák'he_
+6 | _run_ | 17 | _ászan_ | 80 | _xírnak_
+7 | _zair_ | 18 | _ávran_ | 90 | _xírnak'he_
+8 | _pra_ | 19 | _aasun_ | 100 | _dátai_
+9 | _thu_ | 20 | _nak_ | 200 | _ahr datái_
+10 | _xi_, _he_ | 21 | _nak yir_ | 1000 | _zinái_
+
+The suffix _-ka_ is used to represent ordinal numbers, e.g. _senka_ is "third". Note that 
+- If the number ends with _-k_, this turns into a glottal stop plus _k_: _nak_ -> _nakka_, is pronounced /naʔk<sup>h</sup>a/
+- If the number ends with two consonants, the second one converts into a glottal stop: _ahr_ -> _ahrka_ pronounced /aχ<sup>h</sup>ʔk<sup>h</sup>a/. _xirn_ -> _xirnka_ is similar.
+- These are pronunciation differences only, and ordinals are spelled regularly.
+
+#### 6.3 Prepositions
+
+Prepositions (recorded under Pp) are simple particles that are placed before the phrase or object they are preposing. 
+
+These include simple location markers like _ith_ (in), _saa_ (at), _ryin_ (over), comparatives like _san_ (like), as well as qualifiers like _atáne_ (still, yet).
+
+> [!comment]
+> _za asrai ryin hakrós tanie._ I fly over great mountains    
+> `I FLY-present OVER MOUNTAIN MIGHTY`
+
+> [!comment]
+> _arúm san asái yirín._ Eyes like burning dawn    
+> `EYE LIKE DAWN BURN`
+
+> [!comment]
+> _saa is atáne kath._ They were still of kin    
+> `THEY BE-past STILL KIN`
+
+The preposition _sa_ is more complex as it has a broad interpretation generally meaning "in the context of", "of", "about", or "in". It can be used for literary effect, or when a more explicit preposition does not fit.
+
+> [!comment]
+> _karínak sa xarái_ The dancer in the night      
+> `DANCE-actor AT NIGHT`
+
+#### 6.4 Conjunctions
+
+Conjunctions connect phrases and sentences. They go between phrases, or at the start of sentences, much like English or Chinese.
+
+Common conjugations include _a_ (and) and _ir_ (but). 
+
+> [!comment]  
+> _asiir a xai._ the Sun and Moon    
+> `SUN AND MOON`
+
+#### 6.5 Question Words
+
+The most fundamental form of the question is by inverting the subject and the acting verb. Optionally, this can be followed by the question particle _na_. 
+
+> [!comment]
+> _nadéns zii aak?_ Did you see him?    
+> `SEE-past YOU HIM`
+
+For the copula case, there is no verb to use, so the copula phrases are inverted.
+
+> [!comment]
+> _rékhar zii na?_ Are you a dragon?    
+> `DRAGON YOU question`
+
+An alternate way of asking a yes-no question is by placing the negation particle _da_ after the subject, where the verb originally was.
+
+> [!comment]
+> _nadéns zii da aak, na?_ Did you (or did you not) see him?    
+> `SEE-past YOU NOT HIM`
+
+Common question words (recorded under Pp) such as _khak_ (what) and _viir_ (how) can be placed at the start of questions.
+
+> [!comment]
+> _khak nadéns zii?_ What did you see?   
+> `WHAT SEE YOU`
+
+#### 6.6. Interjections
+
+_rekharhakr_ has an extensive, albeit informal set of interjections, mostly meaningless single-syllable phrases such as _akh_, _aa_, _ka_, _kha_, _na_, _ke_. 
+
+Syllables that start with vowels tend to be used at the start of sentences, and those that start with consonants at the end. They have a soft tendency to rhyme with the previous word, and are mostly used for emphatic effect instead of having a set meaning.
+
 ### 7. Derivation and Compounding
+
+#### 7.1 Compounding
+
+_rekharhakr_ exhibits noun compounding to a limited degree, usually a noun-descriptor compound. When present, it usually _inverts_ the noun-descriptor structure into descriptor-noun.
+
+> [!comment]
+> _idíks rékhar._ The race of dragons    
+> `RACE  DRAGON`    
+> _rekharidíks._ Dragonkind    
+> `DRAGON-RACE = DRAGONKIND`
+
+Such compounds are treated and listed separately in the dictionary. 
+
+Exceptions include some highly compounding descriptors, such as _yelr / yelv-_ (pair) and _tanie / tan-_ (great).
+
+Compounds can always be split into, and are equivalent semantically to the uncompounded forms.
 
 ### 8. Phrase Syntax
 
+#### 8.1 Basic Word Order
+
+_rekharhakr_ is a primarily Subject-Verb-Object and Topic-Comment language. However, it features a lot of inverted structures and can be very context-dependent.
+
+Noun phrases go in the order (number) (noun)-(suffixes) (adjectives)
+
+Verb phrases go in the order (modal) (negation)-(verb) (adverbs)
+
+#### 8.2 The Copula
+
+_rekharhakr_ does not have a copula in the standard tense. To say A is B, A and B are put next to each other.
+
+> [!comment]
+> _khaa rékhar._ She is a dragon    
+> `SHE DRAGON`
+
+The verb _siin_ (to be) _can_ be used as a copula for emphatic effect, in the appropriate tense of the register.
+
+Alternatively, the copula form of _siin_, _sn_ is optional at the end of a topic comment phrase.
+
+> [!comment]
+> _khaa siin rékhar._ She IS a dragon.      
+> `SHE BE DRAGON`
+
+> [!comment]
+> _khaa rékhar sn._ She is a dragon.     
+> `SHE DRAGON BE-copula`
+
+#### 8.3 More uses of _siin_
+
+_siin_ in isolation can be used for affirmation ("yes"), as the inverse of _da_ ("no").
+
+The copula form _sn_ can be used at the sentence initial, or after a location predicate, to indicate existence. 
+
+> [!comment]
+> _sn sen thúrgar._ There are three fish     
+> `BE-copula THREE FISH`
+
+> [!comment]
+> _ith damák sn khan rékhar._ There is a dragon king in Damak     
+> `IN DAMAK Be-copula KING DRAGON`
+
+Locations _always_ go before the main phrase.
+
+{/*TODO: comparatives? comparators? */}
+
 ### 9. Information Structure
+
+#### 9.1 Topic, Comment
+
+Topic-comment is the second main sentence structure in _rekharhakr_. It consists of a topic clause, a comment clause, and an optional ending copula (_sn_).
+
+ > [!comment]
+ > _damák dai, hákros xanáe sn._ Damak Dai is a divine mountain    
+ > `DAMAK DAI, MOUNTAIN DIVINE BE-copula`
+
+#### 9.2 Subject Dropping
+
+_rekharhakr_ is not pro-drop. All subjects and objects are necessary. In very informal speech, subject-dropping is seen, though usually from _khankain_ dragons who have been highly integrated into central plains human culture, and likely treat Draconic as more of a heritage language.
 
 ### 10. Register and Discourse
 
-### 11. Semantics
+#### 10.1 Honorifics
 
-### 12. Sample Text
+_rekharhakr_ has a small set of honorifics for direct address. 
+
+First person:
+- _zar_ is the standard first person pronoun, and acceptable to use in almost all situations, including with parents, teachers, and seniors.
+    - _zarón_ is the possessive first person, the shortened form is _ron_, and only suited for informal situations.
+- _siia_ (below) is used as the first person when addressing a ruler as a subject, or someone of rank when you are not. This is not used by _arakain_.
+- _várkhan_ (this lord - for landed nobles) and _valkhán_ (this ruler - for the emperor) are restricted and formal first person titles for specific aristocratic ranks.
+
+Second person:
+
+- _zii_ is the informal second person pronoun, acceptable for use with peers or juniors.
+- _záhar_ is the formal second person pronoun, used for seniors, such as parents, teachers, or suzerains. 
+- In _khankain_ society when speaking to someone of high status, such as a noble or the king, it is customary to use their title (e.g. _arkhán_ (lord), _khan_ (king)) in the subject position.
+
+Third person:
+
+- "lower" pronouns _thaa_ and _thiaa_ ("it") are also applicable to non-dragon sapient races, such as humans, elves, etc.
+- This is usually seen as somewhat impolite by _khankain_ society, although often used. Pointed use of standard third person pronouns by a dragon to a non-dragon usually indicates significant relations (friendships, etc.)
+
+#### 10.2 Titles
+
+Titles come after names. 
+
+> [!comment]
+> _ástron arkhán_. Lord Astron    
+> `ASTRON LORD`    
+> _lurkhái khan_. King Lyu [lurkhai]     
+> `LURKHAI KING`
+
+#### 10.3 Register
+
+_rekharhakr_ does not necessarily have a highly literary register, as it is used mostly as a colloquial language. 
+
+However, the classical draconic language (_hakr_) is the preferred literary tongue for religious or highly solemn occasions, and for recording ancient magicks.
+
+Fiction written in draconic often borrow from the ancient form for literary effect. The literary register is past tense by default.
+
+{/*TODO: add an 11. Semantics section with specific words such as kinship, colour, time and seasons, time, idioms and set phrases */}
+
+### 11. Sample Text
+
+> [!readaloud-serif]
+> **Spellbound - Emily Bronté**     
+> *Maskafín - Emilii Pronté*
+> 
+> The night is darkening round me, / *xarái kiisin yúrir za,*     
+> The wild winds coldly blow; / *ervís mae arák vusiin,*     
+> But a tyrant spell has bound me / *ir maks yirsáre sávans za;*     
+> And I cannot, cannot go. / *a za dkhat, dkhat vahín.*     
+> 
+> The giant trees are bending / *kanán lutáin ligárin,*     
+> Their bare boughs weighed with snow. / *kladi kálgen mer mars zigrín*.     
+> And the storm is fast descending, / *a kaatai komán xyae,*     
+> And yet I cannot go. / *ir sa, za dkhat vahín.*     
+> 
+> Clouds beyond Clouds above me, / *asúr aratái háva,*     
+> Wastes beyond wastes below, / *táikhadir váth siia,*     
+> But nothing drear can move me; / *ir dakh maan xiláen za;*     
+> I will not, cannot go. / *zar sis dia, kat dia, vahín.*
