@@ -57,6 +57,7 @@ $speed: 0.15s;
 
 .navbar-links {
     flex: 1;
+    min-width: 0;
     height: 100%;
 
     > ul {
@@ -173,6 +174,20 @@ $speed: 0.15s;
     margin-left: auto;
 }
 
+.navbar-collapsed {
+    .navbar-links {
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    .navbar-divider {
+        visibility: hidden;
+    }
+
+    .navbar-menu-button {
+        display: block;
+    }
+}
 
 .navbar-menu-button,
 .navbar-mobile-close {

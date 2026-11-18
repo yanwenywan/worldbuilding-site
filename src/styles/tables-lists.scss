@@ -11,6 +11,16 @@ th, td {
     padding: 0 $table-margin;
 }
 
+.table-scroll {
+    max-width: 100%;
+    margin: $table-margin 0;
+    overflow-x: auto;
+
+    > table {
+        margin: 0 auto;
+    }
+}
+
 table {
     margin: $table-margin auto;
 

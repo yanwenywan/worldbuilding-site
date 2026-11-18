@@ -6,6 +6,7 @@ import pagefind from 'astro-pagefind';
 import remarkCallout from '@r4ai/remark-callout';
 import remarkWikiLink from '@flowershow/remark-wiki-link';
 import { remarkWikiLinkPages, scanPages, wikiLinkOptions } from './src/plugins/wikilinks.ts';
+import { rehypeTableScroll } from './src/plugins/table-scroll.ts';
 
 const pages = scanPages();
 
@@ -20,6 +21,7 @@ export default defineConfig({
                 [remarkWikiLink, wikiLinkOptions(pages)],
                 [remarkWikiLinkPages, pages],
             ],
+            rehypePlugins: [rehypeTableScroll],
         }),
     },
 });
